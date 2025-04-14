@@ -94,15 +94,15 @@ $$ LANGUAGE plpgsql;
 -- Triggers to update timestamps
 CREATE TRIGGER update_users_timestamp
 BEFORE UPDATE ON users
-FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
+FOR EACH ROW EXECUTE FUNCTION update_modified_column();
 
 CREATE TRIGGER update_tracking_timestamp
 BEFORE UPDATE ON tracking
-FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
+FOR EACH ROW EXECUTE FUNCTION update_modified_column();
 
 CREATE TRIGGER update_alert_preferences_timestamp
 BEFORE UPDATE ON alert_preferences
-FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
+FOR EACH ROW EXECUTE FUNCTION update_modified_column();
 
 -- Indexes
 CREATE INDEX IF NOT EXISTS idx_tracking_user_id ON tracking(user_id);

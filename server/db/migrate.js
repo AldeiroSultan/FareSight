@@ -3,7 +3,7 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const { Pool } = require('pg');
-const logger = require('../logger');
+const logger = require('../utils/logger');
 
 const run = async () => {
   // Create database connection
@@ -15,16 +15,12 @@ const run = async () => {
   try {
     logger.info('Starting database migration...');
 
-    // Read and execute schema.sql
-    const schemaPath = path.join(__dirname, 'schema.sql');
+    // Read schema.sql
+    const schemaPath = path.join(__dirname, 'schema_alt.sql');
     const schema = fs.readFileSync(schemaPath, 'utf8');
 
-    // Split schema into separate statements
-    const statements = schema.split(';').filter(stmt => stmt.trim() !== '');
-
-    for (const statement of statements) {
-      await pool.query(statement + ';');
-    }
+    // Execute the entire schema as a single query
+    await pool.query(schema);
 
     logger.info('Database migration completed successfully');
   } catch (err) {

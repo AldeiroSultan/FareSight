@@ -2,7 +2,7 @@
 require('dotenv').config();
 const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
-const logger = require('../logger');
+const logger = require('../utils/logger');
 
 // Sample data
 const airports = [
@@ -114,6 +114,28 @@ const seedDatabase = async () => {
   } finally {
     await pool.end();
   }
+
+  // Check if demo user already exists
+const userCheck = await pool.query(
+  'SELECT id FROM users WHERE email = $1',
+  ['demo@example.com']
+);
+
+let userId;
+if (userCheck.rows.length === 0) {
+  // Create a demo user if it doesn't exist
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash('password123', salt);
+  
+  const userResult = await pool.query(
+    'INSERT INTO users (email, password_hash, first_name, last_name) VALUES ($1, $2, $3, $4) RETURNING id',
+    ['demo@example.com', hashedPassword, 'Demo', 'User']
+  );
+  
+  userId = userResult.rows[0].id;
+} else {
+  userId = userCheck.rows[0].id;
+}
 };
 
 seedDatabase();

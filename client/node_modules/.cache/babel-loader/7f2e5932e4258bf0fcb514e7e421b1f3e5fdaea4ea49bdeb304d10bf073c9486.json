@@ -1,0 +1,1 @@
+{"ast":null,"code":"export function buildFormatLongFn(args) {\n  return (options = {}) => {\n    // TODO: Remove String()\n    const width = options.width ? String(options.width) : args.defaultWidth;\n    const format = args.formats[width] || args.formats[args.defaultWidth];\n    return format;\n  };\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

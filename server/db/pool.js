@@ -1,6 +1,6 @@
 // server/db/pool.js
 const { Pool } = require('pg');
-const logger = require('../logger');
+const logger = require('../utils/logger');
 
 // Create connection pool
 const pool = new Pool({

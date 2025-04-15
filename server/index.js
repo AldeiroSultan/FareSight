@@ -16,6 +16,21 @@ const flightRoutes = require('./routes/flights');
 const alertRoutes = require('./routes/alerts');
 const userRoutes = require('./routes/users');
 
+// Check that routes are valid router objects
+const validateRouter = (router, name) => {
+  if (!router || typeof router.use !== 'function' || typeof router.route !== 'function') {
+    console.error(`Error: ${name} is not a valid Express Router object`);
+    return express.Router(); // Return empty router as fallback
+  }
+  return router;
+};
+
+// Validate routers
+const validatedAuthRoutes = validateRouter(authRoutes, 'authRoutes');
+const validatedFlightRoutes = validateRouter(flightRoutes, 'flightRoutes');
+const validatedAlertRoutes = validateRouter(alertRoutes, 'alertRoutes');
+const validatedUserRoutes = validateRouter(userRoutes, 'userRoutes');
+
 // Database connection
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -59,10 +74,10 @@ app.use(session({
 }));
 
 // Routes
-app.use('/api/auth', apiLimiter, authRoutes);
-app.use('/api/flights', flightRoutes);
-app.use('/api/alerts', alertRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/auth', apiLimiter, validatedAuthRoutes);
+app.use('/api/flights', validatedFlightRoutes);
+app.use('/api/alerts', validatedAlertRoutes);
+app.use('/api/users', validatedUserRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -84,7 +99,12 @@ app.listen(PORT, () => {
   
   // Initialize price checker in production or if explicitly enabled
   if (process.env.NODE_ENV === 'production' || process.env.ENABLE_PRICE_CHECKER === 'true') {
-    initPriceChecker();
+    try {
+      initPriceChecker();
+      console.log('Price checker initialized');
+    } catch (error) {
+      console.error('Failed to initialize price checker:', error);
+    }
   }
 });
 

@@ -4,7 +4,7 @@ const pool = require('../db/pool');
 const amadeusService = require('./amadeus');
 const scraperService = require('./scraper');
 const emailService = require('./email');
-const logger = require('../logger');
+const logger = require('../utils/logger');
 const { isMistakeFare, isSignificantPriceDrop } = require('../utils/priceUtils');
 
 // Initialize price checker

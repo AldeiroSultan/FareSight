@@ -1,44 +1,460 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FareSight - Flight Price Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <i class="fas fa-paper-plane"></i>
+          <span>FareSight</span>
+        </div>
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="#" class="active">Dashboard</a></li>
+            <li><a href="#">Search Flights</a></li>
+            <li><a href="#">My Alerts</a></li>
+            <li><a href="#">Price History</a></li>
+          </ul>
+        </nav>
+        <div class="nav-right">
+          <button class="notifications">
+            <i class="fas fa-bell"></i>
+            <span class="badge">3</span>
+          </button>
+          <div class="user-profile">
+            <img src="https://via.placeholder.com/40" alt="User profile">
+            <div class="dropdown">
+              <div class="dropdown-menu">
+                <a href="#"><i class="fas fa-user"></i> Profile</a>
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="mobile-menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <!-- Hero section with search -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Find the Best Flight Deals</h1>
+        <p>Track prices and get alerted when fares drop</p>
+      </div>
+      <div class="search-box">
+        <form>
+          <div class="search-row">
+            <div class="search-group">
+              <label>From</label>
+              <div class="input-with-icon">
+                <i class="fas fa-plane-departure"></i>
+                <input type="text" placeholder="City or airport">
+              </div>
+            </div>
+            <div class="search-group">
+              <label>To</label>
+              <div class="input-with-icon">
+                <i class="fas fa-plane-arrival"></i>
+                <input type="text" placeholder="City or airport">
+              </div>
+            </div>
+            <div class="search-group">
+              <label>Depart</label>
+              <div class="input-with-icon">
+                <i class="fas fa-calendar"></i>
+                <input type="date">
+              </div>
+            </div>
+            <div class="search-group">
+              <label>Return</label>
+              <div class="input-with-icon">
+                <i class="fas fa-calendar-plus"></i>
+                <input type="date">
+              </div>
+            </div>
+            <button type="submit" class="search-button">
+              <i class="fas fa-search"></i>
+              <span>Search</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <!-- Main content -->
+  <main class="main">
+    <div class="container">
+      <!-- Stats cards -->
+      <div class="stats-section">
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <div class="stats-content">
+            <h3>3</h3>
+            <p>Active Alerts</p>
+          </div>
+        </div>
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="stats-content">
+            <h3>$120</h3>
+            <p>Avg. Savings</p>
+          </div>
+        </div>
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="stats-content">
+            <h3>37%</h3>
+            <p>Largest Drop</p>
+          </div>
+        </div>
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div class="stats-content">
+            <h3>May 15</h3>
+            <p>Next Trip</p>
+          </div>
+        </div>
+      </div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+      <!-- Two column layout -->
+      <div class="dashboard-grid">
+        <!-- Price history -->
+        <div class="dashboard-card price-history">
+          <div class="card-header">
+            <h2>Price History</h2>
+            <select class="route-select">
+              <option>JFK to LAX</option>
+              <option>SFO to LHR</option>
+              <option>ORD to CDG</option>
+            </select>
+          </div>
+          <div class="chart-container">
+            <canvas id="priceChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Recent alerts -->
+        <div class="dashboard-card recent-alerts">
+          <div class="card-header">
+            <h2>Recent Alerts</h2>
+            <a href="#" class="view-all">View all</a>
+          </div>
+          <div class="alerts-list">
+            <div class="alert-item">
+              <div class="alert-top">
+                <span class="alert-route">JFK to LAX</span>
+                <span class="alert-date">Apr 12, 2025</span>
+              </div>
+              <div class="alert-price">
+                <span class="new-price">$340</span>
+                <span class="price-change">-29%</span>
+              </div>
+              <div class="alert-old-price">
+                <span class="old">$480</span>
+                <span class="arrow">→</span>
+                <span class="new">$340</span>
+              </div>
+            </div>
+            <div class="alert-item">
+              <div class="alert-top">
+                <span class="alert-route">SFO to LHR</span>
+                <span class="alert-date">Apr 10, 2025</span>
+              </div>
+              <div class="alert-price">
+                <span class="new-price">$750</span>
+                <span class="price-change">-37%</span>
+              </div>
+              <div class="alert-old-price">
+                <span class="old">$1200</span>
+                <span class="arrow">→</span>
+                <span class="new">$750</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tracked routes table -->
+      <div class="dashboard-card tracked-routes">
+        <div class="card-header">
+          <h2>Tracked Routes</h2>
+          <a href="#" class="view-all">View all</a>
+        </div>
+        <div class="table-container">
+          <table class="routes-table">
+            <thead>
+              <tr>
+                <th>Route</th>
+                <th>Date</th>
+                <th>Current Price</th>
+                <th>Alert Threshold</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>JFK → LAX</td>
+                <td>May 15, 2025</td>
+                <td>$340</td>
+                <td>$300</td>
+                <td><span class="status-badge above">Above Threshold</span></td>
+                <td class="actions">
+                  <button class="action-btn search-btn" title="Search flights"><i class="fas fa-search"></i></button>
+                  <button class="action-btn alert-btn" title="Edit alert"><i class="fas fa-bell"></i></button>
+                  <button class="action-btn delete-btn" title="Delete alert"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>SFO → LHR</td>
+                <td>Jun 20, 2025</td>
+                <td>$750</td>
+                <td>$800</td>
+                <td><span class="status-badge below">Below Threshold</span></td>
+                <td class="actions">
+                  <button class="action-btn search-btn" title="Search flights"><i class="fas fa-search"></i></button>
+                  <button class="action-btn alert-btn" title="Edit alert"><i class="fas fa-bell"></i></button>
+                  <button class="action-btn delete-btn" title="Delete alert"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>ORD → CDG</td>
+                <td>Jul 5, 2025</td>
+                <td>$820</td>
+                <td>$850</td>
+                <td><span class="status-badge below">Below Threshold</span></td>
+                <td class="actions">
+                  <button class="action-btn search-btn" title="Search flights"><i class="fas fa-search"></i></button>
+                  <button class="action-btn alert-btn" title="Edit alert"><i class="fas fa-bell"></i></button>
+                  <button class="action-btn delete-btn" title="Delete alert"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="add-route">
+          <button class="add-route-btn">
+            <i class="fas fa-plus"></i> Add New Route
+          </button>
+        </div>
+      </div>
+
+      <!-- Deals section -->
+      <div class="deals-section">
+        <h2>Featured Deals</h2>
+        <div class="deals-grid">
+          <div class="deal-card">
+            <div class="deal-details">
+              <div class="deal-destination">New York to Los Angeles</div>
+              <div class="deal-dates">May 15 - May 22, 2025</div>
+              <div class="deal-price">$340</div>
+              <div class="deal-stats">
+                <span class="deal-discount">25% below average</span>
+              </div>
+            </div>
+            <div class="deal-cta">
+              <button class="deal-button">View Deal</button>
+            </div>
+          </div>
+          <div class="deal-card">
+            <div class="deal-details">
+              <div class="deal-destination">San Francisco to London</div>
+              <div class="deal-dates">Jun 20 - Jul 5, 2025</div>
+              <div class="deal-price">$750</div>
+              <div class="deal-stats">
+                <span class="deal-discount">37% below average</span>
+              </div>
+            </div>
+            <div class="deal-cta">
+              <button class="deal-button">View Deal</button>
+            </div>
+          </div>
+          <div class="deal-card">
+            <div class="deal-details">
+              <div class="deal-destination">Chicago to Paris</div>
+              <div class="deal-dates">Jul 5 - Jul 15, 2025</div>
+              <div class="deal-price">$820</div>
+              <div class="deal-stats">
+                <span class="deal-discount">15% below average</span>
+              </div>
+            </div>
+            <div class="deal-cta">
+              <button class="deal-button">View Deal</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-paper-plane"></i>
+          <span>FareSight</span>
+          <p>Track flight prices. Get the best deals.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h3>Company</h3>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Press</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Support</h3>
+            <ul>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 FareSight. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+  <script>
+    // Mobile menu toggle
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      mobileToggle.querySelector('i').classList.toggle('fa-bars');
+      mobileToggle.querySelector('i').classList.toggle('fa-times');
+    });
+    
+    // Price chart
+    const ctx = document.getElementById('priceChart').getContext('2d');
+    const priceChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Apr 1', 'Apr 2', 'Apr 3', 'Apr 4', 'Apr 5', 'Apr 6', 'Apr 7'],
+        datasets: [{
+          label: 'Price (USD)',
+          data: [450, 460, 470, 455, 440, 425, 410],
+          fill: true,
+          backgroundColor: 'rgba(75, 192, 255, 0.2)',
+          borderColor: 'rgba(75, 192, 255, 1)',
+          tension: 0.4,
+          pointBackgroundColor: 'rgba(75, 192, 255, 1)',
+          pointBorderColor: '#fff',
+          pointRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+            backgroundColor: 'rgba(30, 30, 45, 0.9)',
+            titleColor: '#fff',
+            bodyColor: '#fff',
+            borderColor: 'rgba(75, 192, 255, 0.3)',
+            borderWidth: 1,
+            padding: 10,
+            titleFont: {
+              size: 14,
+              weight: 'bold'
+            },
+            bodyFont: {
+              size: 13
+            },
+            callbacks: {
+              label: function(context) {
+                return `$${context.raw}`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: {
+              color: 'rgba(255, 255, 255, 0.05)'
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.7)'
+            }
+          },
+          y: {
+            beginAtZero: false,
+            grid: {
+              color: 'rgba(255, 255, 255, 0.05)'
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.7)',
+              callback: function(value) {
+                return '$' + value;
+              }
+            }
+          }
+        }
+      }
+    });
+    
+    // User profile dropdown
+    const userProfile = document.querySelector('.user-profile');
+    userProfile.addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!userProfile.contains(e.target)) {
+        userProfile.classList.remove('active');
+      }
+    });
+  </script>
+</body>
 </html>

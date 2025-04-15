@@ -4,12 +4,15 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { AlertProvider } from './contexts/AlertContext';
 
+// Style imports
+import './styles/dark-theme.css';
+
 // Layout components
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
+import NewHeader from './components/layout/NewHeader';
+import NewFooter from './components/layout/NewFooter';
 
 // Page components
-import Dashboard from './pages/Dashboard';
+import NewDashboard from './pages/NewDashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Search from './pages/Search';
@@ -24,8 +27,8 @@ const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
   
   if (loading) {
-    return <div className="flex justify-center items-center h-screen">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    return <div className="loading-container">
+      <div className="loading-spinner"></div>
     </div>;
   }
   
@@ -41,9 +44,9 @@ function App() {
     <Router>
       <AuthProvider>
         <AlertProvider>
-          <div className="flex flex-col min-h-screen bg-gray-50">
-            <Navbar />
-            <main className="flex-grow container mx-auto px-4 py-6">
+          <div className="app-container">
+            <NewHeader />
+            <main>
               <Routes>
                 {/* Public routes */}
                 <Route path="/login" element={<Login />} />
@@ -54,7 +57,7 @@ function App() {
                   path="/" 
                   element={
                     <ProtectedRoute>
-                      <Dashboard />
+                      <NewDashboard />
                     </ProtectedRoute>
                   } 
                 />
@@ -62,7 +65,7 @@ function App() {
                   path="/dashboard" 
                   element={
                     <ProtectedRoute>
-                      <Dashboard />
+                      <NewDashboard />
                     </ProtectedRoute>
                   } 
                 />
@@ -111,7 +114,7 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
-            <Footer />
+            <NewFooter />
           </div>
         </AlertProvider>
       </AuthProvider>

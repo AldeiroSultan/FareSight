@@ -3,7 +3,7 @@ const { Resend } = require('resend');
 const logger = require('../../utils/logger');
 
 // Initialize Resend client
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || 're_AdHrHtRy_HQkSx7ahNCFmAtTgGhqc866i');
 
 /**
  * Send a price alert email
